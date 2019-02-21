@@ -1,0 +1,22 @@
+version: '2.1'
+
+services:
+
+  python:
+    container_name: ${PYTHON_CONTAINER}
+    image: python-venv:${PYTHON_TAG}
+    hostname: ${PYTHON_HOSTNAME}
+    environment:
+      - no_proxy
+      - NO_PROXY
+      - http_proxy
+      - HTTP_PROXY
+      - https_proxy
+      - HTTPS_PROXY
+    working_dir: /usr/src/app
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - '${HTTP_PORT}:5000'
+    command: [/bin/bash, -c, ./scripts/run.sh]
+    restart: always
