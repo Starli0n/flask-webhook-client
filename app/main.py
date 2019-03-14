@@ -1,7 +1,9 @@
 from flask import Flask
+import blueprint.autoregister as autoregister
 
 app = Flask(__name__)
+autoregister.blueprint(app)
 
 @app.route('/')
 def hello():
-    return 'Hello, World!'
+    return 'Flask webhook client'
