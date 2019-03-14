@@ -1,4 +1,4 @@
 #!/bin/bash
 
-. venv/bin/activate
+. scripts/activate.sh
 FLASK_APP=main.py flask run --host=0.0.0.0

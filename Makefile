@@ -16,9 +16,24 @@ env: # Create .env and tweak it before initialize
 .PHONY: app
 app: initialize pull build mount
 
+.PHONY: native-app # Require python installed on local machine
+native-app: initialize native-install
+
+.PHONY: native-install
+native-install:
+	cd app && . ./scripts/install.sh
+
+.PHONY: native-run
+native-run:
+	cd app && . ./scripts/run.sh
+
+.PHONY: native-upgrade
+native-upgrade:
+	cd app && . ./scripts/upgrade.sh
+
 .PHONY: initialize
 initialize:
-	chmod +x app/scripts/{install,upgrade,run}.sh
+	chmod +x app/scripts/{activate,install,upgrade,run}.sh
 
 .PHONY: pull
 pull: # Pull the docker image
